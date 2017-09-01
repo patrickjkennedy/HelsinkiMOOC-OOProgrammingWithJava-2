@@ -21,19 +21,19 @@ public class Suitcase {
 
     public void addThing(Thing thing) {
 
-        int currentWeight = this.currentWeight();
+        int currentWeight = this.totalWeight();
 
         int totalWeight = currentWeight + thing.getWeight();
 
         if (totalWeight <= maxWeight) {
             this.things.add(thing);
-        } 
+        }
     }
 
     public String toString() {
         int currentThings = this.things.size();
-        int currentWeight = this.currentWeight();
-        
+        int currentWeight = this.totalWeight();
+
         switch (currentThings) {
             case 0:
                 return "empty (0 kg)";
@@ -44,12 +44,37 @@ public class Suitcase {
         }
     }
 
-    public int currentWeight() {
-        int currentWeight = 0;
+    public int totalWeight() {
+        int totalWeight = 0;
 
         for (Thing i : this.things) {
-            currentWeight += i.getWeight();
+            totalWeight += i.getWeight();
         }
-        return currentWeight;
+        return totalWeight;
     }
+
+    public void printThings() {
+        System.out.println("Your suitcase contains the following things:");
+        for (Thing thing : this.things) {
+            System.out.println(thing.toString());
+        }
+    }
+
+    public Thing heaviestThing() {
+        
+        Thing heaviestThing = null;
+        if (this.things.isEmpty()) {
+            return null;
+        } else {
+            int heaviestWeight = 0;
+            for (Thing thing : this.things) {
+                if (thing.getWeight() > heaviestWeight) {
+                    heaviestWeight = thing.getWeight();
+                    heaviestThing = thing;
+                }
+            }
+            return heaviestThing;
+        }
+    }
+    
 }
