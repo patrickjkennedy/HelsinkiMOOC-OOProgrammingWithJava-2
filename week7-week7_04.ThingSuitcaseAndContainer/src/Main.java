@@ -1,19 +1,19 @@
 public class Main {
-    public static void main(String[] args) {
-        Thing brick = new Thing("Brick", 4);
-        Thing book = new Thing("Happiness in Three Steps", 2);
-        Thing mobile = new Thing("Nokia 3210", 1);
-        
+    public static void main(String[] Container) {
+        Container container = new Container(1000);
+        addSuitcasesFullOfBricks(container);
+        System.out.println(container);
+    }
 
-        Suitcase suitcase = new Suitcase(10);
-        suitcase.addThing(book);
-        suitcase.addThing(brick);
-        suitcase.addThing(mobile);
+    public static void addSuitcasesFullOfBricks(Container container) {
+        // adding 100 suitcases with one brick in each
         
-
-        Thing heaviest = suitcase.heaviestThing();
-        System.out.println("The heaviest thing: " + heaviest);
-        
+        for(int i = 1; i < 101; i++){
+            Thing brick = new Thing("Brick", i);
+            Suitcase suitcase = new Suitcase(100);
+            suitcase.addThing(brick);
+            container.addSuitcase(suitcase);
+        }
         
     }
 }

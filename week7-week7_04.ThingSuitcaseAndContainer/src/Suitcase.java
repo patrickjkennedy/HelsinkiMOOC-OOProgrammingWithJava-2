@@ -54,7 +54,6 @@ public class Suitcase {
     }
 
     public void printThings() {
-        System.out.println("Your suitcase contains the following things:");
         for (Thing thing : this.things) {
             System.out.println(thing.toString());
         }
