@@ -25,23 +25,21 @@ public class AirportPanel {
     public void start() {
 
         System.out.println("Airport panel");
-        System.out.println("------------------");
-        System.out.println();
+        System.out.println("--------------------");
         System.out.println();
 
         while (true) {
-            int input = getInput();
-            switch (input) {
-                case 1:
-                    addPlane();
-                    break;
-                case 2:
-                    addFlight();
-                    break;
-                case 3:
-                    //flightService();
-                default:
-                    break;
+            String input = getInput();
+
+            if (input.equals("1")) {
+                addPlane();
+            } else if (input.equals("2")) {
+                addFlight();
+            } else if (input.equals("x") || input.equals("X")) {
+                flightService();
+                break;
+            } else {
+                System.out.println("Unknown command, please try again.");
             }
 
         }
@@ -71,20 +69,71 @@ public class AirportPanel {
                 String depCode = this.reader.nextLine();
                 System.out.print("Give destination airport code: ");
                 String arrCode = this.reader.nextLine();
-                String flight = "(" + depCode + "-" + arrCode + ")";
-                this.flights.addFlight(plane, flight);
+                String route = "(" + depCode + "-" + arrCode + ")";
+                this.flights.addFlight(route, plane);
             }
         }
     }
 
-    public int getInput() {
+    public void flightService() {
+        System.out.println();
+        System.out.println("Flight service");
+        System.out.println("------------");
+        System.out.println();
+
+        while (true) {
+            String input = getInputFlightService();
+
+            if (input.equals("1")) {
+                printPlanes();
+            } else if (input.equals("2")) {
+                this.flights.printFlights();
+            } else if (input.equals("3")) {
+                printPlaneInfo();
+            } else if (input.equals("x") || input.equals("X")) {
+                break;
+            } else {
+                System.out.println("Unknown command, please try again.");
+            }
+        }
+    }
+
+    public String getInput() {
         System.out.println("Choose operation:");
         System.out.println("[1] Add airplane");
         System.out.println("[2] Add flight");
         System.out.println("[x] Exit");
         System.out.print("> ");
-        int input = Integer.parseInt(this.reader.nextLine());
+        String input = this.reader.nextLine();
         return input;
+    }
+
+    public String getInputFlightService() {
+        System.out.println("Choose operation:");
+        System.out.println("[1] Print planes");
+        System.out.println("[2] Print flights");
+        System.out.println("[3] Print plane info");
+        System.out.println("[x] Quit");
+        System.out.print("> ");
+        String input = this.reader.nextLine();
+        return input;
+    }
+
+    public void printPlanes() {
+        for (Plane plane : this.planes) {
+            System.out.println(plane);
+        }
+    }
+
+    public void printPlaneInfo() {
+        System.out.print("Give plane ID: ");
+        String id = this.reader.nextLine();
+        
+        for(Plane plane: this.planes){
+            if(id.equals(plane.getId())){
+                System.out.println(plane);
+            }
+        }
     }
 
 }

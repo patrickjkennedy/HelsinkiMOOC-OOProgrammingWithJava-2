@@ -12,18 +12,20 @@ import java.util.*;
  * @author pkennedy
  */
 public class Flights {
-    private HashMap<Plane,String> flights;
+    private HashMap<String,Plane> flights;
     
     public Flights(){
-        this.flights = new HashMap<Plane, String>();
+        this.flights = new HashMap<String, Plane>();
     }
     
-    public void addFlight(Plane plane, String flight){
-        this.flights.put(plane, flight);
+    public void addFlight(String route, Plane plane){
+        this.flights.put(route, plane);
     }
     
-    public String getFlight(Plane plane){
-        String flight = this.flights.get(plane);
-        return flight;
+    public void printFlights(){
+        for(String route: this.flights.keySet()){
+            System.out.println(this.flights.get(route) + " " + route);
+        }
+        System.out.println();
     }
 }
