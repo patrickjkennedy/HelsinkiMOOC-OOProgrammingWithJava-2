@@ -21,6 +21,11 @@ public class Box implements Thing {
         this.contents = new ArrayList<Thing>();
     }
 
+    public Box(Box box) {
+        this.contents = new ArrayList<Thing>();
+        this.maximumCapacity = box.maximumCapacity;
+    }
+
     public boolean addThing(Thing thing) {
         if (thing.getVolume() + getVolume() <= this.maximumCapacity) {
             this.contents.add(thing);
