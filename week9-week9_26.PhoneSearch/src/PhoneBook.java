@@ -29,9 +29,13 @@ public class PhoneBook {
     }
 
     public void searchByName(String searchName) {
-        for (String name : this.phonebook.keySet()) {
-            System.out.println(this.phonebook.get(name).toString());
+        try {
+            System.out.println(this.phonebook.get(searchName).toString()
+                    .replace("[", " ").replace(", ", "\n" + " ").replace("]", ""));
+        } catch (Exception e) {
+            System.out.println("  phone number not found");
         }
+
     }
 
 }

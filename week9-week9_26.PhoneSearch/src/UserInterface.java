@@ -57,7 +57,6 @@ public class UserInterface {
     public void searchByName() {
         System.out.print("whose number: ");
         String name = this.reader.nextLine();
-        System.out.print(" ");
         this.phonebook.searchByName(name);
         System.out.println();
     }
